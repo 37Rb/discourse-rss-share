@@ -7,7 +7,7 @@ from .config import load_config
 from .discourse import DiscourseError, build_topic_body, post_topic
 from .feed import fetch_feed
 from .state import load_state, log_path, save_state, state_path
-from .teaser import make_teaser
+from .teaser import fetch_article_teaser
 
 LOG_FORMAT = "%(asctime)s %(levelname)s %(message)s"
 LOG_DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
@@ -123,7 +123,11 @@ def main() -> None:
     item = unposted[0]
     remaining_after = len(unposted) - 1
 
-    teaser = make_teaser(item.content)
+    try:
+        teaser = fetch_article_teaser(item.link)
+    except Exception as e:
+        log.error("Failed to fetch article for teaser (%s): %s", item.link, e)
+        sys.exit(1)
     body = build_topic_body(item.link, teaser)
 
     if args.dry_run:

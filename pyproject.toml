@@ -3,6 +3,7 @@ name = "discourse-rss-share"
 version = "0.1.0"
 requires-python = ">=3.9"
 dependencies = [
+    "beautifulsoup4>=4.12",
     "feedparser>=6.0",
     "requests>=2.28",
     "PyYAML>=6.0",
