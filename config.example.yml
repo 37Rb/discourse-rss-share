@@ -1,0 +1,15 @@
+# RSS feed to monitor
+feed_url: "https://example.com/feed.rss"
+
+# Discourse instance
+discourse_url: "https://your-discourse.example.com"
+discourse_api_key: "your_api_key_here"
+discourse_api_username: "your_bot_username"
+
+# Target category numeric ID (find it in Discourse admin or via /categories.json)
+category_id: 5
+
+# Optional: tags to apply to every topic (tags must already exist in Discourse)
+tags:
+  - rss
+  - automated
