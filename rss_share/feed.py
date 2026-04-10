@@ -13,7 +13,10 @@ class FeedItem:
 
 
 def fetch_feed(url: str) -> List[FeedItem]:
-    parsed = feedparser.parse(url)
+    parsed = feedparser.parse(url, request_headers={
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+    })
 
     if parsed.bozo and parsed.bozo_exception and not parsed.entries:
         raise RuntimeError(
