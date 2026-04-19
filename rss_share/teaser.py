@@ -31,6 +31,8 @@ def fetch_article_teaser(url: str, word_count: int = TEASER_WORD_COUNT) -> str:
     # Remove non-content elements
     for tag in soup(["script", "style", "nav", "header", "footer", "aside"]):
         tag.decompose()
+    for tag in soup.find_all(class_="c-post-byline"):
+        tag.decompose()
 
     # Prefer <article> or <main>, fall back to all <p> tags
     container = soup.find("article") or soup.find("main")
